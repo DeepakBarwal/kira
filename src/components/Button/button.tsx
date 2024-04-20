@@ -7,7 +7,7 @@ interface ButtonProps {
 
 export const Button = ({ onClick, children }: ButtonProps) => {
   const handler = () => {
-    console.log("hey");
+    console.log("heya");
   };
   if (!onClick)
     return (
