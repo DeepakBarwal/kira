@@ -947,6 +947,64 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@prisma/client@npm:^5.12.1":
+  version: 5.12.1
+  resolution: "@prisma/client@npm:5.12.1"
+  peerDependencies:
+    prisma: "*"
+  peerDependenciesMeta:
+    prisma:
+      optional: true
+  checksum: 10c0/ceb9dd2cf87b2d648bfda543bfd3e8ae18c575a6b4d90133c4f584ed93f9be0aa65ef47c269b234629a5f89a7b761ad971a8a8dae48ff30f2822630e8359312a
+  languageName: node
+  linkType: hard
+
+"@prisma/debug@npm:5.12.1":
+  version: 5.12.1
+  resolution: "@prisma/debug@npm:5.12.1"
+  checksum: 10c0/81fbd488853935717b616382efb8a4282a96920ac2bf8f077096b1cc870c25ea33ff69544c20b09de77d6918511d12a01f8ee2e8000c5b5b27fd52fc1c8d050f
+  languageName: node
+  linkType: hard
+
+"@prisma/engines-version@npm:5.12.0-21.473ed3124229e22d881cb7addf559799debae1ab":
+  version: 5.12.0-21.473ed3124229e22d881cb7addf559799debae1ab
+  resolution: "@prisma/engines-version@npm:5.12.0-21.473ed3124229e22d881cb7addf559799debae1ab"
+  checksum: 10c0/3903d26695f352fee5600e70258c494c8f99b0a2df0d400cdef99b7361e2c63896720c9d77584b198159d045bf5d0ef0eb4bdf902f9ef9002a0da363aec26ff6
+  languageName: node
+  linkType: hard
+
+"@prisma/engines@npm:5.12.1":
+  version: 5.12.1
+  resolution: "@prisma/engines@npm:5.12.1"
+  dependencies:
+    "@prisma/debug": "npm:5.12.1"
+    "@prisma/engines-version": "npm:5.12.0-21.473ed3124229e22d881cb7addf559799debae1ab"
+    "@prisma/fetch-engine": "npm:5.12.1"
+    "@prisma/get-platform": "npm:5.12.1"
+  checksum: 10c0/248533ad7f747e60544e8e2040f7b81db3b33254cd36b116f7bc905657beb7962af7ee1f658068e415141eeec02f924f88b01febff9b139d36d8ab92e68d12d4
+  languageName: node
+  linkType: hard
+
+"@prisma/fetch-engine@npm:5.12.1":
+  version: 5.12.1
+  resolution: "@prisma/fetch-engine@npm:5.12.1"
+  dependencies:
+    "@prisma/debug": "npm:5.12.1"
+    "@prisma/engines-version": "npm:5.12.0-21.473ed3124229e22d881cb7addf559799debae1ab"
+    "@prisma/get-platform": "npm:5.12.1"
+  checksum: 10c0/f07cc8e98d9c78c881256c2626f72101dd93df13d7702181a566812728eb4dffab558d2d437ca0ff66db8c81f30b41789a56c59602b229d645dbec021af99c1f
+  languageName: node
+  linkType: hard
+
+"@prisma/get-platform@npm:5.12.1":
+  version: 5.12.1
+  resolution: "@prisma/get-platform@npm:5.12.1"
+  dependencies:
+    "@prisma/debug": "npm:5.12.1"
+  checksum: 10c0/9efd5f3eb33005c5455c60dfbea0ed83faa6fb463b0c5b0a4e812a9683f2f0d8f96c9710019266e0cd369a5ef7c8a83ddd8ee4f1cafdf32c4db3e19f2b8d8c50
+  languageName: node
+  linkType: hard
+
 "@rushstack/eslint-patch@npm:^1.3.3":
   version: 1.10.2
   resolution: "@rushstack/eslint-patch@npm:1.10.2"
@@ -2753,11 +2811,11 @@ __metadata:
   linkType: hard
 
 "eslint-plugin-react-hooks@npm:^4.5.0 || 5.0.0-canary-7118f5dd7-20230705":
-  version: 5.0.0-canary-7118f5dd7-20230705
-  resolution: "eslint-plugin-react-hooks@npm:5.0.0-canary-7118f5dd7-20230705"
+  version: 4.6.0
+  resolution: "eslint-plugin-react-hooks@npm:4.6.0"
   peerDependencies:
     eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0
-  checksum: 10c0/554c4e426bfeb126155510dcba8345391426af147ee629f1c56c9ef6af08340d11008213e4e15b0138830af2c4439d7158da2091987f7efb01aeab662c44b274
+  checksum: 10c0/58c7e10ea5792c33346fcf5cb4024e14837035ce412ff99c2dcb7c4f903dc9b17939078f80bfef826301ce326582c396c00e8e0ac9d10ac2cde2b42d33763c65
   languageName: node
   linkType: hard
 
@@ -3238,7 +3296,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:10.3.10":
+"glob@npm:10.3.10, glob@npm:^10.3.10":
   version: 10.3.10
   resolution: "glob@npm:10.3.10"
   dependencies:
@@ -3253,7 +3311,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^10.2.2, glob@npm:^10.3.10":
+"glob@npm:^10.2.2":
   version: 10.3.12
   resolution: "glob@npm:10.3.12"
   dependencies:
@@ -4579,6 +4637,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "kira@workspace:."
   dependencies:
+    "@prisma/client": "npm:^5.12.1"
     "@testing-library/jest-dom": "npm:^6.4.2"
     "@testing-library/react": "npm:^15.0.2"
     "@testing-library/user-event": "npm:^14.5.2"
@@ -4591,6 +4650,7 @@ __metadata:
     jest-environment-jsdom: "npm:^29.7.0"
     next: "npm:14.2.2"
     postcss: "npm:^8"
+    prisma: "npm:^5.12.1"
     react: "npm:^18"
     react-dom: "npm:^18"
     tailwindcss: "npm:^3.4.1"
@@ -4969,17 +5029,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ms@npm:2.1.2":
+"ms@npm:2.1.2, ms@npm:^2.1.1":
   version: 2.1.2
   resolution: "ms@npm:2.1.2"
   checksum: 10c0/a437714e2f90dbf881b5191d35a6db792efbca5badf112f87b9e1c712aace4b4b9b742dd6537f3edf90fd6f684de897cec230abde57e87883766712ddda297cc
-  languageName: node
-  linkType: hard
-
-"ms@npm:^2.1.1":
-  version: 2.1.3
-  resolution: "ms@npm:2.1.3"
-  checksum: 10c0/d924b57e7312b3b63ad21fc5b3dc0af5e78d61a1fc7cfb5457edaf26326bf62be5307cc87ffb6862ef1c2b33b0233cdb5d4f01c4c958cc0d660948b65a287a48
   languageName: node
   linkType: hard
 
@@ -5137,9 +5190,9 @@ __metadata:
   linkType: hard
 
 "nwsapi@npm:^2.2.2":
-  version: 2.2.7
-  resolution: "nwsapi@npm:2.2.7"
-  checksum: 10c0/44be198adae99208487a1c886c0a3712264f7bbafa44368ad96c003512fed2753d4e22890ca1e6edb2690c3456a169f2a3c33bfacde1905cf3bf01c7722464db
+  version: 2.2.8
+  resolution: "nwsapi@npm:2.2.8"
+  checksum: 10c0/3f99a09547a704334d7b85b0de0db36f761d8c880d3f50d43cddfe93368bb9ce86879650dac84510b69b8eb94c2f513d6991a9e576013510a6cb5395ff498dcb
   languageName: node
   linkType: hard
 
@@ -5560,6 +5613,17 @@ __metadata:
     ansi-styles: "npm:^5.0.0"
     react-is: "npm:^18.0.0"
   checksum: 10c0/edc5ff89f51916f036c62ed433506b55446ff739358de77207e63e88a28ca2894caac6e73dcb68166a606e51c8087d32d400473e6a9fdd2dbe743f46c9c0276f
+  languageName: node
+  linkType: hard
+
+"prisma@npm:^5.12.1":
+  version: 5.12.1
+  resolution: "prisma@npm:5.12.1"
+  dependencies:
+    "@prisma/engines": "npm:5.12.1"
+  bin:
+    prisma: build/index.js
+  checksum: 10c0/9159752f8eb679d4e3229b4d72d846c71f2666a7f46f45128eeac57e959a356eb189e9ae4ec7a07702e1fe730c745dad5c442e3b5832ae665cd675512afe1b28
   languageName: node
   linkType: hard
 

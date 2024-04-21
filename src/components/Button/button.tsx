@@ -1,8 +1,8 @@
-import { ReactNode } from "react";
+import React from "react";
 
 interface ButtonProps {
   onClick: () => void;
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 export const Button = ({ onClick, children }: ButtonProps) => {
