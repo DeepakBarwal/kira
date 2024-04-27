@@ -1,14 +1,16 @@
 "use client";
 
 interface ButtonProps {
-  onClick: () => void;
-  children: React.ReactNode;
+  onClick?: () => void;
+  primary?: boolean;
+  label?: string;
+  size?: string;
 }
 
-export const Button = ({ onClick, children }: ButtonProps) => {
+export const Button = ({ onClick, label }: ButtonProps) => {
   return (
     <button onClick={onClick} data-testid="button-test">
-      {children}
+      {label}
     </button>
   );
 };

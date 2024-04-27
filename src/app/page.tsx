@@ -8,10 +8,10 @@ export default function Home() {
 
   return (
     <div>
-      <Button onClick={signIn}>Login</Button>
+      <Button onClick={signIn} label="Login" />
       <br />
       {status}
-      <pre className="text-inverse">{JSON.stringify(session)}</pre>
+      <pre>{JSON.stringify(session)}</pre>
     </div>
   );
 }
