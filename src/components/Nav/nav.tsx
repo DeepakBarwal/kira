@@ -5,6 +5,8 @@ import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import useWindowDimensions from "@/hooks/useWindowDimensions";
 import { NavAvatar } from "./navAvatar";
 import ThemeToggle from "./themeToggle";
+import { navData } from "@/lib/navData";
+import { NavDataType } from "./nav.type";
 
 interface Composition {
   children: ReactNode;
@@ -60,8 +62,9 @@ const NavRenderer = (props: Composition) => {
   );
 };
 
-const NavLogo = () => {
-  return <div className="text-white sm:ml-3">KIRA</div>;
+const NavLogo = (props: Composition) => {
+  const { children } = props;
+  return <div className="text-white sm:ml-3">{children}</div>;
 };
 
 const NavItem = (props: Composition) => {
@@ -74,26 +77,41 @@ const NavItem = (props: Composition) => {
 };
 
 const Navbar = () => {
+  const navItemMap = {
+    logo: NavLogo,
+    item: NavItem,
+    avatar: NavAvatar,
+    themeToggle: ThemeToggle,
+  };
+
+  const [navbarData, setNavbarData] = useState<NavDataType>([]);
+
+  useEffect(() => {
+    const fetchConfig = async () => {
+      const response = await fetch("/api/config");
+      const { data } = await response.json();
+      const navData = data.navData as NavDataType;
+      setNavbarData(navData);
+    };
+    fetchConfig();
+  }, []);
+
   return (
     <NavContainer>
       <NavRenderer>
-        <NavGroup>
-          <NavLogo />
-        </NavGroup>
-
-        <NavGroup>
-          <NavItem>Your Work</NavItem>
-          <NavItem>Projects</NavItem>
-          <NavItem>Filters</NavItem>
-        </NavGroup>
-
-        <NavGroup>
-          <NavAvatar />
-          <ThemeToggle />
-        </NavGroup>
+        {navbarData?.map((navGroup, index) => {
+          return (
+            <NavGroup key={index}>
+              {navGroup?.items?.map((navItem) => {
+                const Item = navItemMap[navItem?.type] || <></>;
+                return <Item key={navItem.id}>{navItem?.content}</Item>;
+              })}
+            </NavGroup>
+          );
+        })}
       </NavRenderer>
     </NavContainer>
   );
 };
 
-export { Navbar };
+export { Navbar, NavLogo, NavItem, NavAvatar };
