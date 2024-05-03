@@ -5,7 +5,6 @@ import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import useWindowDimensions from "@/hooks/useWindowDimensions";
 import { NavAvatar } from "./navAvatar";
 import ThemeToggle from "./themeToggle";
-import { navData } from "@/lib/navData";
 import { NavDataType } from "./nav.type";
 
 interface Composition {
@@ -76,7 +75,13 @@ const NavItem = (props: Composition) => {
   );
 };
 
-const Navbar = () => {
+interface NavbarInterface {
+  externalNavData?: null | NavDataType;
+}
+
+const Navbar = (props: NavbarInterface) => {
+  const { externalNavData = null } = props;
+
   const navItemMap = {
     logo: NavLogo,
     item: NavItem,
@@ -93,8 +98,13 @@ const Navbar = () => {
       const navData = data.navData as NavDataType;
       setNavbarData(navData);
     };
-    fetchConfig();
-  }, []);
+
+    if (!externalNavData) {
+      fetchConfig();
+    } else {
+      setNavbarData(externalNavData);
+    }
+  }, [externalNavData]);
 
   return (
     <NavContainer>
