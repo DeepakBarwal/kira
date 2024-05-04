@@ -14,6 +14,7 @@ export interface NavItemInterface {
   id: number;
   type: NavTypes;
   content: string;
+  authOnly?: boolean;
 }
 
 export type NavDataType = NavGroupInterface[];

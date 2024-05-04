@@ -2,10 +2,11 @@
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
-import useWindowDimensions from "@/hooks/useWindowDimensions";
+import customHook from "@/hooks/index";
 import { NavAvatar } from "./navAvatar";
 import ThemeToggle from "./themeToggle";
 import { NavDataType } from "./nav.type";
+import { useSession } from "next-auth/react";
 
 interface Composition {
   children: ReactNode;
@@ -13,34 +14,36 @@ interface Composition {
 
 const NavContainer = (props: Composition) => {
   const { children } = props;
+  const { useWindowDimensions } = customHook;
   const { isDesktop } = useWindowDimensions();
   const [showNav, toggleNav] = useState(false);
 
-  const [domLoaded, setDomLoaded] = useState(false);
+  // const [domLoaded, setDomLoaded] = useState(false);
 
-  useEffect(() => {
-    setDomLoaded(true);
-  }, []);
+  // useEffect(() => {
+  //   setDomLoaded(true);
+  // }, []);
 
   useEffect(() => {
     toggleNav(isDesktop);
   }, [isDesktop]);
 
-  if (domLoaded)
-    return (
-      <div className="bg-navBg fixed w-full">
-        {!isDesktop && (
-          <HamburgerMenuIcon
-            onClick={() => toggleNav(!showNav)}
-            height={30}
-            width={30}
-            className="ml-auto my-3 mr-3 text-white cursor-pointer"
-          />
-        )}
-        {showNav && children}
-      </div>
-    );
-  return null;
+  // if (domLoaded)
+  return (
+    <div className="bg-navBg fixed w-full">
+      {!isDesktop && (
+        <HamburgerMenuIcon
+          onClick={() => toggleNav(!showNav)}
+          height={30}
+          width={30}
+          className="ml-auto my-3 mr-3 text-white cursor-pointer"
+          data-testid="hamburger_icon"
+        />
+      )}
+      {showNav && children}
+    </div>
+  );
+  // return null;
 };
 
 const NavGroup = (props: Composition) => {
@@ -66,8 +69,18 @@ const NavLogo = (props: Composition) => {
   return <div className="text-white sm:ml-3">{children}</div>;
 };
 
-const NavItem = (props: Composition) => {
-  const { children } = props;
+interface NavItemProps extends Composition {
+  authOnly?: boolean;
+}
+
+const NavItem = (props: NavItemProps) => {
+  const { status } = useSession();
+  const { children, authOnly = false } = props;
+
+  if (authOnly && status !== "authenticated") {
+    return <></>;
+  }
+
   return (
     <div className="background-nav text-white sm:mr-3 p-2 border rounded font-semibold border-none">
       {children}
@@ -114,7 +127,11 @@ const Navbar = (props: NavbarInterface) => {
             <NavGroup key={index}>
               {navGroup?.items?.map((navItem) => {
                 const Item = navItemMap[navItem?.type] || <></>;
-                return <Item key={navItem.id}>{navItem?.content}</Item>;
+                return (
+                  <Item key={navItem.id} authOnly={navItem?.authOnly}>
+                    {navItem?.content}
+                  </Item>
+                );
               })}
             </NavGroup>
           );

@@ -24,15 +24,20 @@ const NavAvatar = () => {
               "https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80"
             }
             alt="Profile Picture"
+            data-testid="profile_picture"
             onClick={() => togglePopup(!showPopup)}
           />
-          <Avatar.Fallback className="skeleton animate-pulse h-full w-full" />
+          <Avatar.Fallback
+            className="skeleton animate-pulse h-full w-full"
+            data-testid="profile_shimmer"
+          />
         </Avatar.Root>
       )}
       {!isLoggedIn && !isLoading && (
         <button
           className="cursor-pointer text-inverse button-brand p-2 rounded-sm"
           onClick={() => signIn()}
+          data-testid="login_btn"
         >
           Login
         </button>
