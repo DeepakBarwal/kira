@@ -30,6 +30,13 @@ export async function fetchBoard(boardId: string, skip = 0, take = 10) {
     where: {
       boardId,
     },
+    include: {
+      assignedUser: {
+        select: {
+          name: true,
+        },
+      },
+    },
     skip: Number(skip),
     take: Number(take),
   });

@@ -1,4 +1,5 @@
 import { fetchBoard } from "@/app/actions/board";
+import { Board } from "@/components/Board";
 
 interface BoardPageProps {
   params: {
@@ -9,7 +10,14 @@ interface BoardPageProps {
 const BoardPage = async ({ params }: BoardPageProps) => {
   const { data } = await fetchBoard(params?.boardId);
 
-  return <div className="pt-16 sm:ml-[250px]">BoardPage {params?.boardId}</div>;
+  return (
+    <div className="pt-16 px-0 sm:px-3 sm:ml-[250px]">
+      <Board
+        boardColumns={data.boardColumns}
+        boardTickets={data.boardTickets}
+      />
+    </div>
+  );
 };
 
 export default BoardPage;
