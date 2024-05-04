@@ -4,6 +4,7 @@ import AuthProvider from "@/context/authProvider";
 import { ThemeProvider } from "@/context/themeProvider";
 import { Navbar } from "@/components/Nav";
 import "./globals.css";
+import { SideNav } from "@/components/SideNav";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +24,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system">
           <AuthProvider>
             <Navbar />
+            <SideNav />
             {children}
           </AuthProvider>
         </ThemeProvider>

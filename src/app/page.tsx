@@ -7,7 +7,7 @@ export default function Home() {
   const { data: session, status } = useSession();
 
   return (
-    <div className="pt-16">
+    <div className="pt-16 sm:ml-[250px]">
       <Button onClick={signIn} label="Login" />
       <br />
       {status}
