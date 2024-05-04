@@ -4,7 +4,7 @@ import AuthProvider from "@/context/authProvider";
 import { ThemeProvider } from "@/context/themeProvider";
 import { Navbar } from "@/components/Nav";
 import "./globals.css";
-import { SideNav } from "@/components/SideNav";
+import { SideNav, SideNavMobile } from "@/components/SideNav";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,6 +25,9 @@ export default function RootLayout({
           <AuthProvider>
             <Navbar />
             <SideNav />
+            <SideNavMobile>
+              <SideNav isMobileView={true} />
+            </SideNavMobile>
             {children}
           </AuthProvider>
         </ThemeProvider>
