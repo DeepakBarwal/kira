@@ -29,7 +29,7 @@ const Board = (props: BoardProps) => {
 
   useEffect(() => {
     setTickets(boardTickets);
-  }, []);
+  }, [boardTickets]);
 
   const handleDragEnd: OnDragEndResponder = (result) => {
     const currentTickets = JSON.parse(JSON.stringify(tickets));

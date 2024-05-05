@@ -76,7 +76,7 @@ const NavCreate = () => {
       boardId,
       storyPoints: data.points,
       assignedTo: data.assignee,
-      reportedBy: session?.user.id,
+      reportedBy: session?.user.id || "",
     });
     setOpen(false);
   };
