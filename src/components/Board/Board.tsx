@@ -5,8 +5,9 @@ import { DragDropContext, Droppable } from "@hello-pangea/dnd";
 import type { OnDragEndResponder } from "@hello-pangea/dnd";
 import { useState } from "react";
 import cx from "classnames";
+import { updateTicketAtBackend } from "@/app/actions/board";
 
-interface BoardTicketWithUser extends BoardTicket {
+export interface BoardTicketWithUser extends BoardTicket {
   assignedUser: {
     name: string;
   };
@@ -55,6 +56,7 @@ const Board = (props: BoardProps) => {
       return ticket;
     });
     setTickets(updatedTickets);
+    updateTicketAtBackend(updatedTickets);
   };
 
   return (
