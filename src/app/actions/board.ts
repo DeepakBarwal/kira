@@ -1,6 +1,8 @@
 "use server";
 import { prisma } from "@/lib/prisma";
-import type { Board, BoardTicket } from "@prisma/client";
+import { TicketStatus, type Board, type BoardTicket } from "@prisma/client";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export async function getAllBoards() {
   return (await prisma.board.findMany({
@@ -66,8 +68,49 @@ export const updateTicketAtBackend = async (ticketsToUpdate: BoardTicket[]) => {
       });
     });
 
-    const updatedTickets = await prisma.$transaction(transactions);
+    await prisma.$transaction(transactions);
   } catch (error) {
     console.error(error);
   }
+};
+
+export const createTicket = async (data) => {
+  const { title, description, boardId, storyPoints, assignedTo, reportedBy } =
+    data;
+  const status = TicketStatus.TODO;
+  const targetColumn = await prisma.boardColumn.findUnique({
+    where: {
+      label_boardId: {
+        boardId,
+        label: status,
+      },
+    },
+    select: {
+      id: true,
+    },
+  });
+
+  const desiredPosition = await prisma.boardTicket.count({
+    where: {
+      boardId,
+      boardColumnId: targetColumn?.id,
+    },
+  });
+
+  await prisma.boardTicket.create({
+    data: {
+      title,
+      description,
+      boardId,
+      storyPoints,
+      assignedTo,
+      reportedBy,
+      status,
+      position: desiredPosition,
+      boardColumnId: targetColumn?.id,
+    },
+  });
+
+  revalidatePath(`/board/${boardId}`, "page");
+  redirect(`/board/${boardId}`);
 };

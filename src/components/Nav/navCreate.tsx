@@ -18,6 +18,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { getUsers } from "@/app/actions/users";
 import { User } from "@prisma/client";
+import { createTicket } from "@/app/actions/board";
+import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 interface CreateTicketFields {
   title: string;
@@ -37,6 +40,9 @@ const NavCreate = () => {
   const [open, setOpen] = useState(false);
   const [users, setUsers] = useState<User[]>([]);
   const editorRef = useRef<TinyMCEEditor | null>(null);
+  const path = usePathname();
+  const boardId = path.split("/")[2];
+  const { data: session } = useSession();
   const {
     register,
     handleSubmit,
@@ -63,8 +69,16 @@ const NavCreate = () => {
 
   const handleOpen = () => setOpen(!open);
 
-  const onSubmit: SubmitHandler<CreateTicketFields> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<CreateTicketFields> = async (data) => {
+    await createTicket({
+      title: data.title,
+      description: data.description,
+      boardId,
+      storyPoints: data.points,
+      assignedTo: data.assignee,
+      reportedBy: session?.user.id,
+    });
+    setOpen(false);
   };
 
   return (
@@ -192,7 +206,7 @@ const NavCreate = () => {
               onEditorChange={(newValue, editor) =>
                 setValue("description", newValue)
               }
-              initialValue="<p>This is the initial content of the editor.</p>"
+              initialValue=""
               init={{
                 height: 500,
                 menubar: false,
@@ -280,7 +294,7 @@ const NavCreate = () => {
               type="submit"
               variant="gradient"
               color="green"
-              onClick={handleOpen}
+              // onClick={handleOpen}
               placeholder="Create Ticket"
               onPointerEnterCapture={undefined}
               onPointerLeaveCapture={undefined}
