@@ -7,6 +7,7 @@ import { NavAvatar } from "./navAvatar";
 import ThemeToggle from "./themeToggle";
 import { NavDataType } from "./nav.type";
 import { useSession } from "next-auth/react";
+import { NavCreate } from "./navCreate";
 
 interface Composition {
   children: ReactNode;
@@ -100,6 +101,7 @@ const Navbar = (props: NavbarInterface) => {
     item: NavItem,
     avatar: NavAvatar,
     themeToggle: ThemeToggle,
+    create: NavCreate,
   };
 
   const [navbarData, setNavbarData] = useState<NavDataType>([]);
