@@ -13,6 +13,7 @@ import {
   Option,
 } from "@material-tailwind/react";
 import { Editor } from "@tinymce/tinymce-react";
+import type { Editor as TinyMCEEditor } from "tinymce";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { getUsers } from "@/app/actions/users";
@@ -35,7 +36,7 @@ const schema = z.object({
 const NavCreate = () => {
   const [open, setOpen] = useState(false);
   const [users, setUsers] = useState<User[]>([]);
-  const editorRef = useRef(null);
+  const editorRef = useRef<TinyMCEEditor | null>(null);
   const {
     register,
     handleSubmit,
