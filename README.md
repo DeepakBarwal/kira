@@ -1,5 +1,24 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Env
+
+```
+POSTGRES_URL=
+POSTGRES_PRISMA_URL=
+POSTGRES_URL_NO_SSL=
+POSTGRES_URL_NON_POOLING=
+POSTGRES_USER=
+POSTGRES_HOST=
+POSTGRES_PASSWORD=
+POSTGRES_DATABASE=
+GOOGLE_ID=
+GOOGLE_SECRET=
+NEXTAUTH_SECRET=
+# NEXTAUTH_URL=
+EDGE_CONFIG=
+NEXT_PUBLIC_TINY_MCE_KEY=
+```
+
 ## Getting Started
 
 First, run the development server:
